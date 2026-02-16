@@ -2,6 +2,7 @@ import json
 from rich.console import Console
 from rich.panel import Panel
 from utils.config import get_config
+import pyperclip
 
 config = get_config()
 
@@ -43,3 +44,6 @@ def print_github_action_config():
     for key, value in secrets.items():
         console.rule(f"[bold cyan]{key}[/bold cyan]")
         console.print(f"[green]{value}[/green]\n")
+
+    pyperclip.copy(secrets["USER_DATA"])
+    console.print("[bold yellow]提示：[/bold yellow][bold magenta] USER_DATA 的值已自动写入剪贴板（建议直接粘贴，手动复制可能多出空白符导致出错） [/bold magenta]")
