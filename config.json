@@ -2,7 +2,7 @@
   "multiTask": true,
   "taskCount": 5,
   "proxyAddress": "",
-  "messageTemplate": "[盖瑞]今日火花[加一]\n我的朋友，新年新气象！\n—— [右边] 每日一言 [左边] ——\n[API]",
+  "messageTemplate": "自动续火花\n[date]",
   "hitokotoTypes": [
     "文学",
     "影视",

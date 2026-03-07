@@ -25,4 +25,6 @@ def build_message() -> str:
         if "[API]" in message:
             api_content = request_hitokoto()
             message = message.replace("[API]", api_content)
+        if "[date]" in message:
+            message = message.replace("[date]", today.strftime("%Y年%m月%d日"))
     return message.strip()
