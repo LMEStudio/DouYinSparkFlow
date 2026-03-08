@@ -5,3 +5,4 @@ chrome/
 logs/
 .DS_Store
 usersData.json
+pushConfig.json

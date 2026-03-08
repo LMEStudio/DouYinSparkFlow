@@ -11,7 +11,6 @@ xpaths = {
 
 console = Console()
 
-
 async def userLogin():
     playwright, browser = await get_browser(GUI=True)
     try:
@@ -58,13 +57,13 @@ async def userLogin():
 
         for user in userdata:
             if user["unique_id"] == unique_id:
-                print(f"用户 {unique_id} 已存在，更新信息。")
+                print(f"用户 {unique_id} 已存在, 更新信息")
                 user["cookies"] = cookies
                 user["username"] = username
                 user["targets"] = [target.strip() for target in targets.split(" ")]
                 break
         else:
-            print(f"添加新用户 {unique_id} 。")
+            print(f"添加新用户: {unique_id}")
             userdata.append(
                 {
                     "unique_id": unique_id,
@@ -77,11 +76,10 @@ async def userLogin():
         with open("usersData.json", "w", encoding="utf-8") as f:
             json.dump(userdata, f, ensure_ascii=False, indent=4)
 
-        console.print(f"[bold green]登录完成！已添加用户 {username}[/bold green]")
+        console.print(f"[bold green]登录完成! 已添加用户: {username}[/bold green]")
     finally:
         await playwright.stop()
         await browser.close()
-
 
 if __name__ == "__main__":
     asyncio.run(userLogin())

@@ -13,7 +13,7 @@ def build_message() -> str:
         from utils.chinese_new_year_2026_mare import get_random_festival_quote, get_lunar_date
         message = get_config().get("happyNewYear", {}).get("messageTemplate", "[API]")
         if "[data]" in message:
-            message = message.replace("[data]", today.strftime("%Y年%m月%d日"))
+            message = message.replace("[data]", today.strftime("%Y.%m.%d::%H:%M:%S"))
         if "[data_lunar]" in message:
             lunar_date = get_lunar_date(today)
             message = message.replace("[data_lunar]", lunar_date if lunar_date else "未知农历日期")
@@ -26,5 +26,5 @@ def build_message() -> str:
             api_content = request_hitokoto()
             message = message.replace("[API]", api_content)
         if "[date]" in message:
-            message = message.replace("[date]", today.strftime("%Y年%m月%d日"))
+            message = message.replace("[date]", today.strftime("%Y.%m.%d::%H:%M:%S"))
     return message.strip()

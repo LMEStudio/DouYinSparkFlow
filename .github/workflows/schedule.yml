@@ -27,14 +27,14 @@ jobs:
     - name: Run DouYin Spark Flow
       env:
         USER_DATA: ${{ secrets.USER_DATA }}
-        SERVER_CHAN: ${{ secrets.SERVER_CHAN }}
+        PUSH_CONFIG: ${{ secrets.PUSH_CONFIG }}
       run: python main.py --doTask
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: logs
         path: logs/app.log
-      # Upload a single log file for easier access
+        # Upload a single log file for easier access
   workflow-keepalive:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
