@@ -15,7 +15,7 @@ packed:
 pushConfigJson = get_pushConfig()
 console = Console()
 
-LOGFILE = "logs\\app.log"
+LOGFILE = "logs/app.log"
 
 def composeMessage(LOGFILE):
     logFile = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), LOGFILE)
