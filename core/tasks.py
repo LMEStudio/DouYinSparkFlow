@@ -3,6 +3,7 @@ import traceback
 import logging
 from utils.logger import setup_logger
 from utils.config import get_config, get_userData
+from core.push import pushMessage
 from core.msg_builder import build_message
 from core.browser import get_browser
 
@@ -222,3 +223,4 @@ async def runTasks():
 
         # 关闭浏览器实例
         await browser.close()
+    pushMessage()

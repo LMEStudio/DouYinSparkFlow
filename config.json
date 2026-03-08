@@ -13,9 +13,7 @@
       "enabled": true,
       "messageTemplate": "【[data]|[data_lunar]】\n[烟花]今日专属祝福[福]：\n[API]"
   },
-  "messagePush":{
-    "enable": true,
-    "method": "server_chan",
-    "token": ""
+  "messagePush": {
+    "enabled": true
   }
 }

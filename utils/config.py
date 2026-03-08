@@ -13,8 +13,10 @@ logger = setup_logger(level=logging.DEBUG)
 DEBUG = False
 CONFIGFILE = "config.json"
 USERDATAFILE = "usersData.json"
+PUSHCONFIGFILE = "pushConfig.json"
 config = None
 userData = None
+pushConfig = None
 
 
 class Environment(Enum):
@@ -85,3 +87,32 @@ def get_userData():
 
     userData = json.loads(userDataJson)
     return userData
+
+def get_pushConfig():
+    """
+    获取推送配置信息
+    :return: 配置字典
+    """
+    global pushConfig
+    
+    if pushConfig:
+        return pushConfig
+    
+    pushConfigFile = PUSHCONFIGFILE
+    pushConfigJson = ""
+    
+    env = get_environment()
+
+    if env == Environment.GITHUBACTION:
+        pushConfigJson = os.getenv("PUSH_CONFIG", None)
+        if not pushConfigJson:
+            logger.error("环境变量 PUSH_CONFIG 未设置")
+            # exit(1)
+    else:
+        if env == Environment.PACKED:
+            pushConfigFile = os.path.join(os.path.dirname(sys.executable), PUSHCONFIGFILE)
+        with open(pushConfigFile, "r", encoding="utf-8") as f:
+            pushConfigJson = f.read()
+    
+    pushConfig = json.loads(pushConfigJson)
+    return pushConfig
