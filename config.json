@@ -16,6 +16,6 @@
   "messagePush":{
     "enable": true,
     "method": "server_chan",
-    "token":
+    "token": ""
   }
 }
