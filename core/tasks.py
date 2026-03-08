@@ -12,8 +12,7 @@ complates = {}
 
 config = get_config()
 userData = get_userData()
-logger = setup_logger(level=logging.DEBUG)
-
+logger = setup_logger(level=logging.INFO)
 
 async def retry_operation(name, operation, retries=3, delay=2, *args, **kwargs):
     """

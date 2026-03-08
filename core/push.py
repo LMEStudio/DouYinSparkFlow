@@ -52,13 +52,12 @@ def configPush(pushProvider, pushToken):
         json.dump(pushConfigJson, f, ensure_ascii=False, indent=4)
     console.rule(f"[bold cyan]PUSH_CONFIG[/bold cyan]")
     console.print(f"[bold green]{pushConfigJson}[/bold green]")
-    # return pushConfigJson
-
 
 def pushMessage():
     message = composeMessage(LOGFILE)
     for provider in pushConfigJson:
         pushToken = provider["token"]
         if provider["provider"] == "server_chan":
-            console.rule(f"[bold cyan]{serverChan(message, pushToken)}[/bold cyan]")
-    console.rule(f"[bold cyan]消息推送全部完成[/bold cyan]")
+            console.print(f"[bold cyan]{serverChan(message, pushToken)}[/bold cyan]")
+        # TODO: Multiple Providers
+    console.print(f"[bold cyan]消息推送全部完成[/bold cyan]")
