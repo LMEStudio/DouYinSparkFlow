@@ -2,7 +2,8 @@ name: DouYin Spark Flow Schedule Run
 on:
   workflow_dispatch: # 允许手动触发
   schedule: # 定时任务
-    - cron: "0 8 * * *" # 每天 9:00 UTC（对应北京时间 0:00）
+    - cron: "0 8 * * *" 
+    # 9:00 UTC which is 0:00 UTC+8
 jobs:
   run-main:
     timeout-minutes: 20
@@ -26,12 +27,14 @@ jobs:
     - name: Run DouYin Spark Flow
       env:
         USER_DATA: ${{ secrets.USER_DATA }}
+        SERVER_CHAN: ${{ secrets.SERVER_CHAN }}
       run: python main.py --doTask
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: run-logs
-        path: logs/
+        name: logs
+        path: logs/app.log
+      # Upload a single log file for easier access
   workflow-keepalive:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
