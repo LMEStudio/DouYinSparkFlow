@@ -48,7 +48,7 @@ def main():
 
                 choice = Prompt.ask("[bold green]请输入选项编号 (1/2)[/bold green]", choices=["1", "2"])
                 if choice == "1":
-                    pushProvider = "server_chan"
+                    pushProvider = "server_chan_turbo"
                 elif choice == "2":
                     pushProvider = ""
                 else:

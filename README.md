@@ -1,14 +1,6 @@
 # DouYin Spark Flow
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)
-![Playwright](https://img.shields.io/badge/Playwright-%E2%9C%94-green?logo=playwright)
-![chrome-headless-shell](https://img.shields.io/badge/chrome--headless--shell-%E2%9C%94-brightgreen?logo=googlechrome)
-
-## 🎉 2026 正月限定（除夕至正月十五）
-
-除夕当天到正月十五期间，可开启祝福模式，每日向好友发送与当日相关的祝福语。
-
-### 启用方法
+## 启用方法
 
 拉取最新代码后，将 `config.json` 中 `happyNewYear` 下的 `enabled` 设为 `true`。
 
