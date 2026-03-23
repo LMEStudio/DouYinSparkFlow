@@ -2,7 +2,7 @@
   "multiTask": true,
   "taskCount": 5,
   "proxyAddress": "",
-  "messageTemplate": "自动续火花\n[date]",
+  "messageTemplate": "[date] 自动续火花",
   "hitokotoEnabled": false,
   "hitokotoTypes": ["文学", "影视", "诗词","哲学"],
   "happyNewYear": {

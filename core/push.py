@@ -33,7 +33,7 @@ def serverChanTurbo(message, pushToken):
         data = {'title': f'自动续火花存在失败 - {date.today().strftime("%Y-%m-%d")}', 'desp': message}
     
     response = requests.post(url, data=data)
-    return response.text
+    # return response.text
 
 def configPush(pushProvider, pushToken):
     if os.path.exists("pushConfig.json"):
