@@ -3,7 +3,7 @@ import traceback
 import logging
 from utils.logger import setup_logger
 from utils.config import get_config, get_userData
-from core.push import pushMessage
+from utils.push import pushMessage
 from core.msg_builder import build_message
 from core.browser import get_browser
 
@@ -217,9 +217,11 @@ async def runTasks():
 
         # 并发执行任务
         await asyncio.gather(*tasks)
+    except Exception:
+        logger.exception("任务执行过程中发生异常")
     finally:
         await playwright.stop()
 
         # 关闭浏览器实例
         await browser.close()
-    pushMessage()
+        await pushMessage()

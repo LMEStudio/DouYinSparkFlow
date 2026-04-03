@@ -1,5 +1,6 @@
 import logging
 import os
+from datetime import date
 from logging.handlers import RotatingFileHandler
 
 # 创建 logs 文件夹（如果不存在）
@@ -10,7 +11,8 @@ if not os.path.exists("logs"):
 LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s"
 
 # 日志文件路径
-LOG_FILE = "logs/app.log"
+current_date = date.today().strftime('%Y-%m-%d')
+LOG_FILE = f"logs/{current_date}.log"
 
 # 配置日志
 def setup_logger(name="app", level=logging.INFO):
