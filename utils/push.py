@@ -34,6 +34,7 @@ def _format_serverchan_desp(message) -> str:
     for item in message:
         text = item.replace('\r\n', '\n')
         parts = text.split('\n\n')
+        if not parts:
             lines.append('')
             continue
         lines.extend(parts)
@@ -133,6 +134,7 @@ async def pushMessage(message: str | None = None):
             await asyncio.to_thread(serverChanTurbo, desp, pushToken)
         elif provider == "server_chan_cubed":
             desp = _format_serverchan_desp(message)
+            uid = provider_config.get("uid", "")
             await asyncio.to_thread(serverChanCubed, desp, pushToken, uid)
         elif provider == "pushplus":
             topic = provider_config.get("topic", "")
