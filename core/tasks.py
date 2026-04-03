@@ -4,7 +4,7 @@ import logging
 from utils.logger import setup_logger
 from utils.config import get_config, get_userData
 from utils.push import pushMessage
-from core.msg_builder import build_message
+from core.msg_builder import build_message, build_message_with_openai
 from core.browser import get_browser
 
 
@@ -168,9 +168,9 @@ async def do_user_task(browser, username, cookies, targets, semaphore):
         # 滚动并选择用户
         async for username in scroll_and_select_user(page, username, targets):
             logger.info(f"账号 {username} 已选中好友 {username} 发送消息")
-            # 等待 chat-input-dccKiL 元素加载完成
-            chat_input_selector = "xpath=//div[contains(@class, 'chat-input-dccKiL')]"
-            await page.wait_for_selector(chat_input_selector)
+            # 等待聊天输入框元素加载完成，使用更稳定的属性选择器
+            chat_input_selector = "xpath=//div[contains(@class, 'chat-input-')]"
+            await page.wait_for_selector(chat_input_selector, timeout=30000)
             chat_input = page.locator(chat_input_selector)
 
             # 在 chat-input-dccKiL 中输入内容
