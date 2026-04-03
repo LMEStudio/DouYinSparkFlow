@@ -9,6 +9,9 @@ from datetime import date
 from openai import OpenAI
 
 
+config = get_config()
+
+
 def build_message_with_openai() -> str:
     """
     通过 OpenAI 接口生成续火花消息，内容丰富，不超过20字
@@ -37,8 +40,6 @@ def build_message_with_openai() -> str:
 
     return response.choices[0].message.content.strip()
 
-
-config = get_config()
 
 def build_message() -> str:
     today = date.today()

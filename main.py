@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.panel import Panel
 from core.login import userLogin
-from utils.configure import initPushConfig, initAccountConfig, dumpSecret, dumpConfig
+from utils.configure import initPushConfig
 from utils.config import get_config
 from utils.github_action_config import print_github_action_config, print_github_action_push_config
 

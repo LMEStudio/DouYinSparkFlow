@@ -16,8 +16,8 @@ def compress_users_data():
 
     return json.dumps(user_data, ensure_ascii=False)
 
-def compress_push_config():
-    with open("pushConfig.json", "r", encoding="utf-8") as f:
+def compress_secret():
+    with open("secret.json", "r", encoding="utf-8") as f:
         push_config = json.loads(f.read())
 
     return json.dumps(push_config, ensure_ascii=False)
@@ -43,7 +43,7 @@ def print_github_action_config():
         secrets["proxyAddress"] = config["proxyAddress"]
     
     if config["messagePush"]["enabled"]:
-        secrets["PUSH_CONFIG"] = compress_push_config()
+        secrets["PUSH_CONFIG"] = compress_secret()
 
     # 打印每个键名和键值
     console.print("\n[bold yellow]Secrets 配置：选中后右击鼠标复制（没有弹出菜单点击鼠标右键就完成复制了！）[/bold yellow]")
@@ -70,7 +70,7 @@ def print_github_action_push_config():
         console.print(Panel(steps, title="前置步骤", expand=False, style="bold cyan"))
         
         secrets = {
-            "PUSH_CONFIG": compress_push_config()
+            "SECRET": compress_secret()
         }
 
         # 打印每个键名和键值
@@ -80,8 +80,8 @@ def print_github_action_push_config():
             console.rule(f"[bold cyan]{key}[/bold cyan]")
             console.print(f"[green]{value}[/green]\n")
 
-        pyperclip.copy(secrets["PUSH_CONFIG"])
-        console.print("[bold yellow]提示：[/bold yellow][bold magenta] PUSH_CONFIG 的值已自动写入剪贴板（建议直接粘贴，手动复制可能多出空白符导致出错） [/bold magenta]")
+        pyperclip.copy(secrets["SECRET"])
+        console.print("[bold yellow]提示：[/bold yellow][bold magenta] SECRET 的值已自动写入剪贴板（建议直接粘贴，手动复制可能多出空白符导致出错） [/bold magenta]")
     else:
         if not config["messagePush"]["enabled"]:
             # 输出前置步骤说明
